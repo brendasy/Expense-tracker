@@ -2,16 +2,21 @@
   <div class="row">
     <div class="col">
       <div class="card card-body table-responsive">
+        <div>
+          {{> filter}}
 
-        <ul class="list-group mb-3">
+          <a class="btn btn-outline-dark btn-sm float-right" href="/record/new">新增</a>
+        </div>
+        <ul class="list-group my-3">
           {{#each records}}
 
             <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <a href="/record/{{this._id}}" class="text-decoration-none">
+              <a href="/record/{{this._id}}/edit" class="text-decoration-none">
                 <i class="fas fa-{{this.category}}"></i>
                 <h6 class="my-0">{{this.name}}</h6>
                 <small class="text-muted">{{this.date}}</small>
               </a>
+              <span>{{this.merchant}}</span>
               <ul class="list-unstyled text-right ml-3">
                 <li class="mb-3">
                   <span class="text-muted">${{this.amount}}</span>

@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-10 col-10 col-md-8 mx-auto">
-      <form action="/record" method="post">
+      <form action="/record" method="POST">
 
         {{!-- 名稱 --}}
         <div class="form-group row">
           <label class="col-12 col-sm-3 col-form-label text-sm-left" for="name"> 消費名稱 </label>
           <div class="col-12 col-sm-8 col-lg-6">
-            <input class="form-control" id="name" name="name" type="text" placeholder="消費名目">
+            <input class="form-control" id="name" name="name" type="text" placeholder="消費名目" required>
           </div>
         </div>
         {{!-- 日期 --}}
@@ -16,7 +16,7 @@
           <div class="col-12 col-sm-8 col-lg-6">
             <div class="docs-datepicker">
               <div class="input-group">
-                <input type="text" class="form-control" data-toggle="datepicker" id="date" name="date">
+                <input type="text" class="form-control" data-toggle="datepicker" id="date" name="date" required>
                 <div class="input-group-append">
                   <label class="input-group-text docs-datepicker-trigger" for="date" disabled="">
                     <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -64,7 +64,7 @@
           <label class="col-12 col-sm-3 col-form-label text-sm-left"> 金額 </label>
           <div class="input-group mb-3 col-12 col-sm-8 col-lg-6">
             <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-            <input class="form-control" type="number" name="amount">
+            <input class="form-control" type="number" name="amount" required>
           </div>
         </div>
 
