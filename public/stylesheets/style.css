@@ -1,0 +1,15 @@
+.mr-02 {
+margin-right: 0.2rem;
+}
+
+.btn-send {
+  color: #495057;
+  background-color: #e9ecef;
+  border: 1px solid #ced4da;
+}
+
+.btn-send:hover {
+  color: #fff;
+  background-color: #5a6268;
+  border-color: #545b62;
+}
