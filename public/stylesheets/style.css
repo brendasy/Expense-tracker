@@ -1,5 +1,17 @@
 .mr-02 {
-margin-right: 0.2rem;
+  margin-right: 0.2rem;
+}
+
+.mb-05 {
+  margin-bottom: 0.5rem;
+}
+
+.delete-icon {
+  cursor: pointer;
+}
+
+.delete-icon:hover {
+  color: red;
 }
 
 .btn-send {
