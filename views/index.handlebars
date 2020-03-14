@@ -2,10 +2,9 @@
   <div class="row">
     <div class="col">
       <div class="card card-body table-responsive">
-        <div>
+        <div class="position-relative">
+          <a class="btn btn-outline-dark btn-sm position-absolute btn-create" href="/record/new">新增</a>
           {{> filter}}
-
-          <a class="btn btn-outline-dark btn-sm float-right" href="/record/new">新增</a>
         </div>
         <ul class="list-group my-3">
           {{#each records}}
@@ -40,18 +39,11 @@
           {{/each}}
           <li class="list-group-item d-flex justify-content-between bg-light">
             <div class="text-success">
-              <h6 class="my-0">Promo code</h6>
-              <small>EXAMPLECODE</small>
+              <h6 class="my-0">Total</h6>
             </div>
-            <span class="text-success">-$5</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between">
-            <span>Total</span>
-            <strong>${{totalAmount}}</strong>
+            <strong class="text-success">${{totalAmount}}</strong>
           </li>
         </ul>
-
-
       </div>
     </div>
   </div>
