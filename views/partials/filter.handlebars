@@ -2,51 +2,63 @@
   <label class="col-3 col-md-2 col-form-label text-sm-left collapsible">月份</label>
   <div class="col-12 col-sm-7 col-lg-9 form-check content">
     <div class="custom-control custom-checkbox custom-control-inline">
-      <input class="custom-control-input" type="checkbox" id="jan" name="jan">
+      <input class="custom-control-input" type="checkbox" id="jan" name="jan" value="1" {{#if filter.jan}} checked
+        {{/if}}>
       <label class="custom-control-label" for="jan">一月</label>
     </div>
     <div class="custom-control custom-checkbox custom-control-inline">
-      <input class="custom-control-input" type="checkbox" id="feb" name="feb">
+      <input class="custom-control-input" type="checkbox" id="feb" name="feb" value="2" {{#if filter.feb}} checked
+        {{/if}}>
       <label class="custom-control-label" for="feb">二月</label>
     </div>
     <div class="custom-control custom-checkbox custom-control-inline">
-      <input class="custom-control-input" type="checkbox" id="mar" name="mar">
+      <input class="custom-control-input" type="checkbox" id="mar" name="mar" value="3" {{#if filter.mar}} checked
+        {{/if}}>
       <label class="custom-control-label" for="mar">三月</label>
     </div>
     <div class="custom-control custom-checkbox custom-control-inline">
-      <input class="custom-control-input" type="checkbox" id="apr" name="apr">
+      <input class="custom-control-input" type="checkbox" id="apr" name="apr" value="4" {{#if filter.apr}} checked
+        {{/if}}>
       <label class="custom-control-label" for="apr">四月</label>
     </div>
     <div class="custom-control custom-checkbox custom-control-inline">
-      <input class="custom-control-input" type="checkbox" id="may" name="may">
+      <input class="custom-control-input" type="checkbox" id="may" name="may" value="5" {{#if filter.may}} checked
+        {{/if}}>
       <label class="custom-control-label" for="may">五月</label>
     </div>
     <div class="custom-control custom-checkbox custom-control-inline">
-      <input class="custom-control-input" type="checkbox" id="jun" name="jun">
+      <input class="custom-control-input" type="checkbox" id="jun" name="jun" value="6" {{#if filter.jun}} checked
+        {{/if}}>
       <label class="custom-control-label" for="jun">六月</label>
     </div>
     <div class="custom-control custom-checkbox custom-control-inline">
-      <input class="custom-control-input" type="checkbox" id="jul" name="jul">
+      <input class="custom-control-input" type="checkbox" id="jul" name="jul" value="7" {{#if filter.jul}} checked
+        {{/if}}>
       <label class="custom-control-label" for="jul">七月</label>
     </div>
     <div class="custom-control custom-checkbox custom-control-inline">
-      <input class="custom-control-input" type="checkbox" id="aug" name="aug">
+      <input class="custom-control-input" type="checkbox" id="aug" name="aug" value="8" {{#if filter.aug}} checked
+        {{/if}}>
       <label class="custom-control-label" for="aug">八月</label>
     </div>
     <div class="custom-control custom-checkbox custom-control-inline">
-      <input class="custom-control-input" type="checkbox" id="sep" name="sep">
+      <input class="custom-control-input" type="checkbox" id="sep" name="sep" value="9" {{#if filter.sep}} checked
+        {{/if}}>
       <label class="custom-control-label" for="sep">九月</label>
     </div>
     <div class="custom-control custom-checkbox custom-control-inline">
-      <input class="custom-control-input" type="checkbox" id="oct" name="oct">
+      <input class="custom-control-input" type="checkbox" id="oct" name="oct" value="10" {{#if filter.oct}} checked
+        {{/if}}>
       <label class="custom-control-label" for="oct">十月</label>
     </div>
     <div class="custom-control custom-checkbox custom-control-inline">
-      <input class="custom-control-input" type="checkbox" id="nov" name="nov">
+      <input class="custom-control-input" type="checkbox" id="nov" name="nov" value="11" {{#if filter.nov}} checked
+        {{/if}}>
       <label class="custom-control-label" for="nov">十一月</label>
     </div>
     <div class="custom-control custom-checkbox custom-control-inline">
-      <input class="custom-control-input" type="checkbox" id="dec" name="dec">
+      <input class="custom-control-input" type="checkbox" id="dec" name="dec" value="12" {{#if filter.dec}} checked
+        {{/if}}>
       <label class="custom-control-label" for="dec">十二月</label>
     </div>
   </div>
@@ -55,24 +67,24 @@
   <label class="col-3 col-md-2 col-form-label text-sm-left collapsible">類型</label>
   <div class="col-12 col-sm-7 col-lg-9 form-check content">
     <div class="custom-control custom-checkbox custom-control-inline">
-      <input class="custom-control-input" type="checkbox" id="jan" name="jan">
-      <label class="custom-control-label" for="jan">一月</label>
+      <input class="custom-control-input" type="checkbox" id="grocery" name="grocery">
+      <label class="custom-control-label" for="grocery">家居物業</label>
     </div>
     <div class="custom-control custom-checkbox custom-control-inline">
-      <input class="custom-control-input" type="checkbox" id="feb" name="feb">
-      <label class="custom-control-label" for="feb">二月</label>
+      <input class="custom-control-input" type="checkbox" id="transpotation" name="transpotation">
+      <label class="custom-control-label" for="transpotation">交通出行</label>
     </div>
     <div class="custom-control custom-checkbox custom-control-inline">
-      <input class="custom-control-input" type="checkbox" id="mar" name="mar">
-      <label class="custom-control-label" for="mar">三月</label>
+      <input class="custom-control-input" type="checkbox" id="entertainment" name="entertainment">
+      <label class="custom-control-label" for="entertainment">休閒娛樂</label>
     </div>
     <div class="custom-control custom-checkbox custom-control-inline">
-      <input class="custom-control-input" type="checkbox" id="apr" name="apr">
-      <label class="custom-control-label" for="apr">四月</label>
+      <input class="custom-control-input" type="checkbox" id="food" name="food">
+      <label class="custom-control-label" for="food">餐飲食品</label>
     </div>
     <div class="custom-control custom-checkbox custom-control-inline">
-      <input class="custom-control-input" type="checkbox" id="may" name="may">
-      <label class="custom-control-label" for="may">五月</label>
+      <input class="custom-control-input" type="checkbox" id="other" name="other">
+      <label class="custom-control-label" for="other">其他</label>
     </div>
   </div>
 </div>

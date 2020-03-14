@@ -30,7 +30,7 @@
   border-color: #545b62;
 }
 
-.active, .collapsible:hover {
+.collapsible:hover {
   background-color: #f1f1f1;
 }
 

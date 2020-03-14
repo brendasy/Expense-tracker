@@ -13,6 +13,8 @@ app.set('view engine', 'handlebars')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
+const { getTotal } = require('./expense-tracker')
+
 mongoose.connect('mongodb://localhost/record', { useNewUrlParser: true, useUnifiedTopology: true })   // 設定連線到 mongoDB
 
 // mongoose 連線後透過 mongoose.connection 拿到 Connection 的物件
@@ -29,10 +31,14 @@ db.once('open', () => {
 })
 
 
+
+
+
 // 取得新增頁面
 app.get('/record/new', (req, res) => {
   res.render('new')
 })
+
 // 執行新增一筆資料  
 app.post('/record/', (req, res) => {
 
@@ -43,6 +49,7 @@ app.post('/record/', (req, res) => {
   })
 
 })
+
 // 瀏覽全部資料
 app.get('/record', (req, res) => {
 
@@ -50,23 +57,15 @@ app.get('/record', (req, res) => {
     .lean()
     .exec((err, records) => {
       if (err) return console.error(err)
-      var totalAmount = 0
-      for (pay of records) {
-        totalAmount += pay.amount
-      }
-      return res.render('index', { records, totalAmount })
+
+      return res.render('index', { records, totalAmount: getTotal(records) })
     })
 })
-
+// 瀏覽全部資料
 app.get('/', (req, res) => {
   res.redirect('/record/')
 })
 
-
-// 瀏覽條件篩選資料  
-app.get('/record/?search =', (req, res) => {
-
-})
 // 取得修改頁面
 app.get('/record/:id/edit', (req, res) => {
 
@@ -79,6 +78,7 @@ app.get('/record/:id/edit', (req, res) => {
     })
 
 })
+
 // 修改一筆資料
 app.put('/record/:id', (req, res) => {
 
@@ -96,6 +96,32 @@ app.put('/record/:id', (req, res) => {
     })
   })
 })
+
+// 瀏覽條件篩選資料  
+app.get('/filter', (req, res) => {
+  console.log('req.query', req.query)
+  const filter = req.query
+  // const monthFilter = Object.keys(filter)
+  Record.find()
+    .lean()
+    .exec((err, records) => {
+      if (err) return console.error(err)
+
+      const monthFilter = Object.values(filter).map(item => item)
+      console.log('monthFilter', monthFilter)
+
+      if (monthFilter.length) {
+
+        records = records.filter(record => {
+          let recordsMonth = record.date.getMonth() + 1
+          return monthFilter.includes(recordsMonth.toString())
+        })
+      }
+      return res.render('index', { records, totalAmount: getTotal(records), filter })
+
+    })
+})
+
 // 刪除一筆資料
 app.delete('/record/:id', (req, res) => {
   console.log("delete")
