@@ -28,17 +28,6 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 
-app.get('/', (req, res) => {
-
-  Record.find()
-    .lean()
-    .exec((err, records) => {
-      if (err) return console.error(err)
-      console.log('records', records)
-      return res.render('index', { records })
-    })
-
-})
 
 // 取得新增頁面
 app.get('/record/new', (req, res) => {
@@ -57,11 +46,23 @@ app.post('/record/', (req, res) => {
 // 瀏覽全部資料
 app.get('/record', (req, res) => {
 
+  Record.find()
+    .lean()
+    .exec((err, records) => {
+      if (err) return console.error(err)
+      var totalAmount = 0
+      for (pay of records) {
+        totalAmount += pay.amount
+      }
+      return res.render('index', { records, totalAmount })
+    })
 })
-// 瀏覽一筆資料
-app.get('/record/:id', (req, res) => {
 
+app.get('/', (req, res) => {
+  res.redirect('/record/')
 })
+
+
 // 瀏覽條件篩選資料  
 app.get('/record/?search =', (req, res) => {
 
@@ -111,3 +112,12 @@ app.delete('/record/:id', (req, res) => {
 app.listen(3000, () => {
   console.log('express is running on port 3000')
 })
+
+function countSum(records) {
+  let totalAmount
+
+  records.forEach(element => {
+    totalAmount += element.amount
+  })
+  return totalAmount
+}
