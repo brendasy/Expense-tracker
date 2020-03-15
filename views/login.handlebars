@@ -3,7 +3,7 @@
     <div class="col-10 col-sm-8 col-lg-6 mx-auto">
 
       <h1 class="mx-auto text-center mb-4">Login</h1>
-
+      {{>message}}
       <form action="/user/login" method="POST">
         <div class="form-group">
           <label for="email">E-mail</label>
@@ -16,7 +16,7 @@
             required>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-block">Login</button>
+        <button type="submit" class="btn btn-dark btn-block">Login</button>
       </form>
       <p class="lead mt-4">
         No Account? <a href="/user/register">Register</a>
