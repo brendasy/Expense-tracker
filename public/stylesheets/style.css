@@ -73,3 +73,8 @@
 .others::before {
   content: "\f304";
 }
+
+.btn-facebook {
+  background-color: #3B5998 !important;
+  color: #fff !important;
+}
