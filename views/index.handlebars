@@ -14,7 +14,7 @@
 
             <li class="list-group-item d-flex justify-content-between lh-condensed">
               <a href="/record/{{this._id}}/edit" class="text-decoration-none">
-                <i class="fas fa-{{this.category}}"></i>
+                <i class="fas {{this.category}}"></i>
                 <h6 class="my-0">{{this.name}}</h6>
                 <small class="text-muted">{{this.date}}</small>
               </a>
@@ -51,3 +51,17 @@
     </div>
   </div>
 </div>
+
+<script>document.getElementById("{{filter.category}}").checked = true;</script>
+
+{{#each filter.category }}
+  <script>document.getElementById("{{this}}").checked = true;</script>
+{{/each}}
+
+<script>document.getElementById("month_{{filter.month}}").checked = true;</script>
+
+{{#each filter.month }}
+  <script>  document.getElementById("month_{{this}}").checked = true;
+    console.log('this', {{ this}})
+  </script>
+{{/each}}

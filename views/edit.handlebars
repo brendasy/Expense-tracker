@@ -33,23 +33,23 @@
           <label class="col-12 col-sm-3 col-form-label text-sm-left"> 類別 </label>
           <div class="col-12 col-sm-8 col-lg-6 form-check mt-1">
             <label class="custom-control custom-radio custom-control-inline">
-              <input class="custom-control-input" type="radio" name="category" value="{{record.category}}"
-                checked=""><span class="custom-control-label">家居物業</span>
+              <input class="custom-control-input" type="radio" name="category" value="grocery" id="grocery"><span
+                class="custom-control-label">家居物業</span>
             </label>
             <label class="custom-control custom-radio custom-control-inline">
-              <input class="custom-control-input" type="radio" name="category" value="{{record.category}}"><span
-                class="custom-control-label">交通出行</span>
+              <input class="custom-control-input" type="radio" name="category" value="transpotation"
+                id="transpotation"><span class="custom-control-label">交通出行</span>
             </label>
             <label class="custom-control custom-radio custom-control-inline">
-              <input class="custom-control-input" type="radio" name="category" value="{{record.category}}"><span
-                class="custom-control-label">休閒娛樂</span>
+              <input class="custom-control-input" type="radio" name="category" value="entertainment"
+                id="entertainment"><span class="custom-control-label">休閒娛樂</span>
             </label>
             <label class="custom-control custom-radio custom-control-inline">
-              <input class="custom-control-input" type="radio" name="category" value="{{record.category}}"><span
+              <input class="custom-control-input" type="radio" name="category" value="food" id="food"><span
                 class="custom-control-label">餐飲食品</span>
             </label>
             <label class="custom-control custom-radio custom-control-inline">
-              <input class="custom-control-input" type="radio" name="category" value="{{record.category}}"><span
+              <input class="custom-control-input" type="radio" name="category" value="others" id="others"><span
                 class="custom-control-label">其他</span>
             </label>
           </div>
@@ -76,3 +76,6 @@
     </div>
   </div>
 </div>
+<script>
+  document.getElementById("{{ record.category }}").checked = true;
+</script>

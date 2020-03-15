@@ -99,24 +99,41 @@ app.put('/record/:id', (req, res) => {
 
 // 瀏覽條件篩選資料  
 app.get('/filter', (req, res) => {
-  console.log('req.query', req.query)
+
   const filter = req.query
-  // const monthFilter = Object.keys(filter)
+
   Record.find()
     .lean()
     .exec((err, records) => {
       if (err) return console.error(err)
 
-      const monthFilter = Object.values(filter).map(item => item)
-      console.log('monthFilter', monthFilter)
-
-      if (monthFilter.length) {
+      if (filter.month || filter.category) {
 
         records = records.filter(record => {
+
           let recordsMonth = record.date.getMonth() + 1
-          return monthFilter.includes(recordsMonth.toString())
+
+          if (filter.month) { //是否有勾選月份
+            if (typeof (filter.month) === 'string') {//是否只有勾選單一月份
+              if (filter.month === recordsMonth.toString()) return true
+            }
+            else if (filter.month.includes(recordsMonth.toString())) {
+              return true
+            }
+          }
+          if (filter.category) { //是否有勾選類別
+
+            if (typeof (filter.category) === 'string') {//是否只有勾選單一類別
+              if (filter.category === record.category) return true
+            }
+            else if (filter.category.includes(record.category)) {
+              return true
+            }
+          }
+          return false
         })
       }
+
       return res.render('index', { records, totalAmount: getTotal(records), filter })
 
     })
@@ -138,12 +155,3 @@ app.delete('/record/:id', (req, res) => {
 app.listen(3000, () => {
   console.log('express is running on port 3000')
 })
-
-function countSum(records) {
-  let totalAmount
-
-  records.forEach(element => {
-    totalAmount += element.amount
-  })
-  return totalAmount
-}

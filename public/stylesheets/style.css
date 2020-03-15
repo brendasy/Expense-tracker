@@ -53,3 +53,23 @@
   opacity: 1;
   transition: opacity 0.2s ease-out;
 }
+
+.food::before {
+  content: "\f2e7";
+}
+
+.transpotation::before {
+  content: "\f5b6";
+}
+
+.entertainment::before {
+   content: "\f582";
+}
+
+.grocery::before {
+  content: "\f015";
+}
+
+.others::before {
+  content: "\f304";
+}
