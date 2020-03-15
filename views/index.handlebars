@@ -51,17 +51,16 @@
     </div>
   </div>
 </div>
+{{#if filter}}
+  <script>document.getElementById("{{filter.category}}").checked = true;</script>
 
-<script>document.getElementById("{{filter.category}}").checked = true;</script>
+  {{#each filter.category }}
+    <script>document.getElementById("{{this}}").checked = true;</script>
+  {{/each}}
 
-{{#each filter.category }}
-  <script>document.getElementById("{{this}}").checked = true;</script>
-{{/each}}
+  <script>document.getElementById("month_{{filter.month}}").checked = true;</script>
 
-<script>document.getElementById("month_{{filter.month}}").checked = true;</script>
-
-{{#each filter.month }}
-  <script>  document.getElementById("month_{{this}}").checked = true;
-    console.log('this', {{ this}})
-  </script>
-{{/each}}
+  {{#each filter.month }}
+    <script>  document.getElementById("month_{{this}}").checked = true;</script>
+  {{/each}}
+{{/if}}
