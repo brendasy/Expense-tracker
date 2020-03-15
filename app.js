@@ -49,7 +49,7 @@ app.use('/user', require('./routes/user'))
 app.use('/', require('./routes/home'))
 app.use('/auth', require('./routes/auth'))
 
-mongoose.connect('mongodb://localhost/record', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/record', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 const db = mongoose.connection
 
 // 連線異常
@@ -64,6 +64,6 @@ db.once('open', () => {
 
 
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log('express is running on port 3000')
 })
