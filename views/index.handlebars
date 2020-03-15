@@ -28,12 +28,12 @@
                     <i class="fas fa-edit mb-05"></i>
                   </a>
                   <form class="list-inline-item ml-5" action="/record/{{this._id}}?_method=DELETE" method="POST">
-                    <label for="delete">
+                    <label for="{{this._id}}">
                       <a class="text-decoration-none">
                         <i class="fas fa-trash-alt mr-02 delete-icon"></i>
                       </a>
                     </label>
-                    <input type="submit" class="delete" id="delete" hidden>
+                    <input type="submit" class="delete" id="{{this._id}}" hidden>
                   </form>
                 </li>
               </ul>
@@ -52,15 +52,20 @@
   </div>
 </div>
 {{#if filter}}
-  <script>document.getElementById("{{filter.category}}").checked = true;</script>
-
-  {{#each filter.category }}
-    <script>document.getElementById("{{this}}").checked = true;</script>
-  {{/each}}
-
-  <script>document.getElementById("month_{{filter.month}}").checked = true;</script>
-
-  {{#each filter.month }}
-    <script>  document.getElementById("month_{{this}}").checked = true;</script>
-  {{/each}}
+  {{#if filter.category}}
+    <script>document.getElementById("{{filter.category}}").checked = true;</script>
+    <script>document.getElementById('category-content').style.display = "block"</script>
+    <script>document.getElementById('category-content').previousElementSibling.classList.toggle("active")</script>
+    {{#each filter.category }}
+      <script>document.getElementById("{{this}}").checked = true;</script>
+    {{/each}}
+  {{/if}}
+  {{#if filter.month}}
+    <script>document.getElementById("month_{{filter.month}}").checked = true;</script>
+    <script>document.getElementById('month-content').style.display = "block"</script>
+    <script>document.getElementById('month-content').previousElementSibling.classList.toggle("active")</script>
+    {{#each filter.month }}
+      <script>  document.getElementById("month_{{this}}").checked = true;</script>
+    {{/each}}
+  {{/if}}
 {{/if}}
