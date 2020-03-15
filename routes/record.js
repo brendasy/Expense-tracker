@@ -2,14 +2,16 @@ const express = require('express')
 const router = express.Router()
 const Record = require('../models/record')
 const { getTotal } = require('../expense-tracker')
+const { authenticated } = require('../config/auth')
+
 
 // 取得新增頁面
-router.get('/new', (req, res) => {
+router.get('/new', authenticated, (req, res) => {
   res.render('new')
 })
 
 // 執行新增一筆資料  
-router.post('/', (req, res) => {
+router.post('/', authenticated, (req, res) => {
   const { name, category, date, amount, merchant } = req.body
   const record = new Record({
     name,
@@ -27,9 +29,9 @@ router.post('/', (req, res) => {
 })
 
 // 瀏覽全部資料
-router.get('/', (req, res) => {
+router.get('/', authenticated, (req, res) => {
 
-  Record.find()
+  Record.find({ userId: req.user._id })
     .lean()
     .exec((err, records) => {
       if (err) return console.error(err)
@@ -39,9 +41,9 @@ router.get('/', (req, res) => {
 })
 
 // 取得修改頁面
-router.get('/:id/edit', (req, res) => {
+router.get('/:id/edit', authenticated, (req, res) => {
 
-  Record.findById(req.params.id)
+  Record.findOne({ _id: req.params.id, userId: req.user._id })
     .lean()
     .exec((err, record) => {
       if (err) return console.error(err)
@@ -52,9 +54,9 @@ router.get('/:id/edit', (req, res) => {
 })
 
 // 修改一筆資料
-router.put('/:id', (req, res) => {
+router.put('/:id', authenticated, (req, res) => {
 
-  Record.findById(req.params.id, (err, record) => {
+  Record.findOne({ _id: req.params.id, userId: req.user._id }, (err, record) => {
     if (err) return console.error(err)
 
     record.name = req.body.name
@@ -70,8 +72,8 @@ router.put('/:id', (req, res) => {
 })
 
 // 刪除一筆資料
-router.delete('/:id', (req, res) => {
-  Record.findById(req.params.id, (err, record) => {
+router.delete('/:id', authenticated, (req, res) => {
+  Record.findOne({ _id: req.params.id, userId: req.user._id }, (err, record) => {
     if (err) return console.error(err)
     record.remove(err => {
       if (err) return console.error(err)

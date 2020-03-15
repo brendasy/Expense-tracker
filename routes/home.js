@@ -1,19 +1,21 @@
 const express = require('express')
 const router = express.Router()
 const Record = require('../models/record')
+const { authenticated } = require('../config/auth')
+const { getTotal } = require('../expense-tracker')
 
 
 // 瀏覽全部資料
-router.get('/', (req, res) => {
+router.get('/', authenticated, (req, res) => {
   res.redirect('/record/')
 })
 
 // 瀏覽條件篩選資料  
-router.get('/filter', (req, res) => {
+router.get('/filter', authenticated, (req, res) => {
 
   const filter = req.query
 
-  Record.find()
+  Record.find({ userId: req.user._id })
     .lean()
     .exec((err, records) => {
       if (err) return console.error(err)
