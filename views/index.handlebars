@@ -4,10 +4,10 @@
       <div class="card card-body table-responsive">
         <form action="/filter">
           <div class="position-relative">
-            <a class="btn btn-outline-dark btn-sm position-absolute btn-create" href="/record/new">新增</a>
+            <a class="btn btn-light btn-sm position-absolute btn-create" href="/record/new">新增</a>
             {{> filter}}
           </div>
-          <button>過濾顯示</button>
+          <button class="btn-secondary btn">過濾顯示</button>
         </form>
         <ul class="list-group my-3">
           {{#each records}}

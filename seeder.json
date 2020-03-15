@@ -1,0 +1,88 @@
+{
+  "users": [
+    {
+      "email": "user1@example.com",
+      "password": "12345678",
+      "name": "Dad",
+      "record": [
+        {
+          "name": "買早餐",
+          "category": "food",
+          "date": "2019-12-31",
+          "amount": 75,
+          "merchant": "美而美"
+        },
+        {
+          "name": "加油",
+          "category": "transpotation",
+          "date": "2019-12-30",
+          "amount": 180,
+          "merchant": "中油"
+        },
+        {
+          "name": "看電影",
+          "category": "entertainment",
+          "date": "2019-10-31",
+          "amount": 300,
+          "merchant": "秀泰影城"
+        },
+        {
+          "name": "買唱片",
+          "category": "entertainment",
+          "date": "2019-11-30",
+          "amount": 498,
+          "merchant": "佳佳唱片"
+        },
+        {
+          "name": "買衛生紙",
+          "category": "grocery",
+          "date": "2020-1-1",
+          "amount": 89,
+          "merchant": "全聯"
+        },
+        {
+          "name": "看醫生",
+          "category": "others",
+          "date": "2019-2-3",
+          "amount": 150,
+          "merchant": "隔壁診所"
+        }
+      ]
+    },
+    {
+      "email": "user2@example.com",
+      "password": "12345678",
+      "name": "Mon",
+      "record": [
+        {
+          "name": "買菜",
+          "category": "grocery",
+          "date": "2019-3-3",
+          "amount": 100,
+          "merchant": "市場"
+        },
+        {
+          "name": "買水果",
+          "category": "grocery",
+          "date": "2019-3-3",
+          "amount": 200,
+          "merchant": "花果山"
+        },
+        {
+          "name": "儲值悠遊卡",
+          "category": "transpotation",
+          "date": "2019-4-3",
+          "amount": 1000,
+          "merchant": "捷運站"
+        },
+        {
+          "name": "買玉蘭花",
+          "category": "others",
+          "date": "2019-4-1",
+          "amount": 100,
+          "merchant": "路邊阿婆"
+        }
+      ]
+    }
+  ]
+}

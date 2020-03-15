@@ -1,8 +1,11 @@
 const mongoose = require('mongoose')
 const Record = require('../record')
+const User = require('../user')
+const seeds = require('../../seeder.json')
+const bcrypt = require('bcryptjs')
 
 mongoose.connect('mongodb://localhost/record',
-  { useNewUrlParser: true, useUnifiedTopology: true })
+  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 
 const db = mongoose.connection
 
@@ -13,23 +16,30 @@ db.on('error', () => {
 db.once('open', () => {
   console.log('db connected!')
 
-  Record.create({
-    name: '買蘋果',
-    category: '採買生食蔬果',
-    date: '2020.3.13',
-    amount: 100,
+  const users = seeds.users
+  users.forEach(user => {
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(user.password, salt, (err, hash) => {
+        if (err) throw err
+
+        const newUser = new User({ email: user.email, name: user.name, password: hash })
+        newUser.save().then().catch(err => console.log(err))
+
+        const records = user.record
+        records.forEach(record => {
+          let newRecord = new Record({
+            name: record.name,
+            category: record.category,
+            date: record.date,
+            amount: record.amount,
+            merchant: record.merchant,
+            userId: newUser._id
+          })
+          newRecord.save().then().catch(err => console.log(err))
+        })
+      })
+    })
   })
-  Record.create({
-    name: '買鞋子',
-    category: '採買生活用品',
-    date: '2/10/2020',
-    amount: 2580,
-  })
-  Record.create({
-    name: '買咖啡',
-    category: '買飲料',
-    date: '2020-1-1',
-    amount: 80,
-  })
+
   console.log('done')
 })
