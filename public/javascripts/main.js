@@ -13,3 +13,16 @@ for (i = 0; i < coll.length; i++) {
     }
   });
 }
+
+//add confirm for delete action
+const forms = document.forms
+for (let element of forms) {
+  element.addEventListener('click', (e) => {
+    if (e.target.classList.contains('delete')) {
+      if (!confirm("確定要刪除這筆資料嗎?")) {
+        e.preventDefault()
+        e.target.blur()
+      }
+    }
+  })
+}

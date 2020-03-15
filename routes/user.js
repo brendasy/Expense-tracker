@@ -11,9 +11,9 @@ router.get('/login', (req, res) => {
 
 //執行登入
 router.post('/login', (req, res, next) => {
-  passport.authenticate('local', { // 使用 passport 認證
-    successRedirect: '/', // 登入成功會回到根目錄
-    failureRedirect: '/user/login', // 失敗會留在登入頁面
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/user/login',
     failureFlash: true
   })(req, res, next)
 })

@@ -27,13 +27,13 @@
                   <a class="text-decoration-none" href="/record/{{this._id}}/edit">
                     <i class="fas fa-edit mb-05"></i>
                   </a>
-                  <form class="list-inline-item" action="/record/{{this._id}}?_method=DELETE" method="POST">
+                  <form class="list-inline-item ml-5" action="/record/{{this._id}}?_method=DELETE" method="POST">
                     <label for="delete">
                       <a class="text-decoration-none">
-                        <i class="fas fa-trash-alt ml-5 mr-02 delete-icon"></i>
+                        <i class="fas fa-trash-alt mr-02 delete-icon"></i>
                       </a>
                     </label>
-                    <input type="submit" id="delete" hidden>
+                    <input type="submit" class="delete" id="delete" hidden>
                   </form>
                 </li>
               </ul>

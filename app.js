@@ -23,7 +23,7 @@ app.use(methodOverride('_method'))
 app.use(flash())
 
 app.use(session({
-  secret: process.env.SESSION_KEY,   // secret: 定義一組屬於你的字串做為私鑰
+  secret: process.env.SESSION_KEY,
   resave: false,
   saveUninitialized: true,
 }))
@@ -49,8 +49,7 @@ app.use('/user', require('./routes/user'))
 app.use('/', require('./routes/home'))
 app.use('/auth', require('./routes/auth'))
 
-mongoose.connect('mongodb://localhost/record', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })   // 設定連線到 mongoDB
-// mongoose 連線後透過 mongoose.connection 拿到 Connection 的物件
+mongoose.connect('mongodb://localhost/record', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 const db = mongoose.connection
 
 // 連線異常
