@@ -30,13 +30,18 @@
   border-color: #545b62;
 }
 
+.collapsible {
+  color:#fff;
+  margin-left: 1rem;
+}
+
 .collapsible:hover {
-  background-color: #f1f1f1;
+  background-color: #839496;
 }
 
 .collapsible:after {
   content: '\002B';
-  color: #495057;
+  /* color: #495057; */
   font-weight: bold;
   float: right;
   margin-left: 5px;
