@@ -35,7 +35,11 @@ router.get('/', authenticated, (req, res) => {
     .lean()
     .exec((err, records) => {
       if (err) return console.error(err)
+      for (record of records) {
 
+        const getTime = record.date
+        record.date = (getTime.getMonth() + 1) + '-' + getTime.getDate() + '-' + getTime.getFullYear()
+      }
       return res.render('index', { records, totalAmount: getTotal(records) })
     })
 })
@@ -47,7 +51,8 @@ router.get('/:id/edit', authenticated, (req, res) => {
     .lean()
     .exec((err, record) => {
       if (err) return console.error(err)
-
+      const getTime = record.date
+      record.date = (getTime.getMonth() + 1) + '-' + getTime.getDate() + '-' + getTime.getFullYear()
       return res.render('edit', { record })
     })
 
