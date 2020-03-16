@@ -4,7 +4,7 @@ const User = require('../user')
 const seeds = require('../../seeder.json')
 const bcrypt = require('bcryptjs')
 
-mongoose.connect('mongodb://localhost/record',
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/record',
   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 
 const db = mongoose.connection
