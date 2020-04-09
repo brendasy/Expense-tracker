@@ -13,6 +13,14 @@ router.get('/new', authenticated, (req, res) => {
 // 執行新增一筆資料  
 router.post('/', authenticated, (req, res) => {
   const { name, category, date, amount, merchant } = req.body
+
+  let errors = []
+  if (!name) { errors.push({ message: '消費名稱不可空白' }) }
+  if (!date) { errors.push({ message: '消費日期不可空白' }) }
+  if (!amount) { errors.push({ message: '消費金額不可空白' }) }
+  if (errors.length > 0) {
+    return res.render('new', { errors })
+  }
   const record = new Record({
     name,
     category,
@@ -60,15 +68,24 @@ router.get('/:id/edit', authenticated, (req, res) => {
 
 // 修改一筆資料
 router.put('/:id', authenticated, (req, res) => {
-
+  const { name, date, category, amount, merchant } = req.body
+  let errors = []
+  if (!name) { errors.push({ message: '消費名稱不可空白' }) }
+  if (!date) { errors.push({ message: '消費日期不可空白' }) }
+  if (!amount) { errors.push({ message: '消費金額不可空白' }) }
+  if (errors.length > 0) {
+    let record = req.body
+    record._id = req.params.id
+    return res.render('edit', { record, errors })
+  }
   Record.findOne({ _id: req.params.id, userId: req.user._id }, (err, record) => {
     if (err) return console.error(err)
 
-    record.name = req.body.name
-    record.date = req.body.date
-    record.category = req.body.category
-    record.amount = req.body.amount
-    record.merchant = req.body.merchant
+    record.name = name
+    record.date = date
+    record.category = category
+    record.amount = amount
+    record.merchant = merchant
     record.save(err => {
       if (err) return console.error(err)
       return res.redirect('/')
