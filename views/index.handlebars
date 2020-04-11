@@ -11,6 +11,18 @@
           <a href="/" class="btn btn-secondary">清空篩選條件</a>
         </form>
         <ul class="list-group my-3">
+          <li class="list-group-item d-flex justify-content-between bg-light">
+            <a
+              href="/filter?sort=category{{#if filter.month}}{{#each filter.month }}&filter[month][]={{this}}{{/each}}{{/if}}{{#if filter.category}}{{#each filter.category }}&filter[category][]={{this}}{{/each}}{{/if}}">類別<span
+                class="arrow asc"></span></a>
+            <a
+              href="/filter?sort=date    {{#if filter.month}}{{#each filter.month }}&filter[month][]={{this}}{{/each}}{{/if}}{{#if filter.category}}{{#each filter.category }}&filter[category][]={{this}}{{/each}}{{/if}}">日期<span
+                class="arrow asc"></span></a>
+            <a
+              href="/filter?sort=amount{{#if filter.month}}{{#each filter.month }}&filter[month][]={{this}}{{/each}}{{/if}}{{#if filter.category}}{{#each filter.category }}&filter[category][]={{this}}{{/each}}{{/if}}">金額<span
+                class="arrow asc"></span></a>
+          </li>
+
           {{#each records}}
 
             <li class="list-group-item d-flex justify-content-between lh-condensed">

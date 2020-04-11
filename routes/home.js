@@ -13,9 +13,11 @@ router.get('/', authenticated, (req, res) => {
 // 瀏覽條件篩選資料  
 router.get('/filter', authenticated, (req, res) => {
 
-  const filter = req.query
+  const filter = req.query.filter || ''//避免filter成為undefined
+  const sort = req.query.sort || ''
 
   Record.find({ userId: req.user._id })
+    .sort(sort)
     .lean()
     .exec((err, records) => {
       if (err) return console.error(err)
