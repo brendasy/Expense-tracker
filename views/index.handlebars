@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col">
       <div class="card card-body table-responsive">
-        <form action="/filter">
+        <form action="/">
           <div class="position-relative">
             <a class="btn btn-light btn-sm position-absolute btn-create" href="/record/new">新增</a>
             {{> filter}}
@@ -13,13 +13,13 @@
         <ul class="list-group my-3">
           <li class="list-group-item d-flex justify-content-between bg-light">
             <a
-              href="/filter?sort=category{{#if filter.month}}{{#each filter.month }}&filter[month][]={{this}}{{/each}}{{/if}}{{#if filter.category}}{{#each filter.category }}&filter[category][]={{this}}{{/each}}{{/if}}">類別<span
+              href="/?sort=category{{#if filter.month}}{{#each filter.month }}&filter[month][]={{this}}{{/each}}{{/if}}{{#if filter.category}}{{#each filter.category }}&filter[category][]={{this}}{{/each}}{{/if}}">類別<span
                 class="arrow asc"></span></a>
             <a
-              href="/filter?sort=date    {{#if filter.month}}{{#each filter.month }}&filter[month][]={{this}}{{/each}}{{/if}}{{#if filter.category}}{{#each filter.category }}&filter[category][]={{this}}{{/each}}{{/if}}">日期<span
+              href="/?sort=date    {{#if filter.month}}{{#each filter.month }}&filter[month][]={{this}}{{/each}}{{/if}}{{#if filter.category}}{{#each filter.category }}&filter[category][]={{this}}{{/each}}{{/if}}">日期<span
                 class="arrow asc"></span></a>
             <a
-              href="/filter?sort=amount{{#if filter.month}}{{#each filter.month }}&filter[month][]={{this}}{{/each}}{{/if}}{{#if filter.category}}{{#each filter.category }}&filter[category][]={{this}}{{/each}}{{/if}}">金額<span
+              href="/?sort=amount{{#if filter.month}}{{#each filter.month }}&filter[month][]={{this}}{{/each}}{{/if}}{{#if filter.category}}{{#each filter.category }}&filter[category][]={{this}}{{/each}}{{/if}}">金額<span
                 class="arrow asc"></span></a>
           </li>
 

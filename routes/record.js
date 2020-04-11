@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const Record = require('../models/record')
-const { getTotal } = require('../expense-tracker')
 const { authenticated } = require('../config/auth')
 
 
@@ -39,17 +38,7 @@ router.post('/', authenticated, (req, res) => {
 // 瀏覽全部資料
 router.get('/', authenticated, (req, res) => {
 
-  Record.find({ userId: req.user._id })
-    .lean()
-    .exec((err, records) => {
-      if (err) return console.error(err)
-      for (record of records) {
-
-        const getTime = record.date
-        record.date = (getTime.getMonth() + 1) + '-' + getTime.getDate() + '-' + getTime.getFullYear()
-      }
-      return res.render('index', { records, totalAmount: getTotal(records) })
-    })
+  res.redirect('/')
 })
 
 // 取得修改頁面
