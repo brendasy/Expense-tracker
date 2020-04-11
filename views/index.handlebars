@@ -54,7 +54,7 @@
 </div>
 {{#if filter}}
   {{#if filter.category}}
-    <script>document.getElementById("{{filter.category}}").checked = true;</script>
+
     <script>document.getElementById('category-content').style.display = "block"</script>
     <script>document.getElementById('category-content').previousElementSibling.classList.toggle("active")</script>
     {{#each filter.category }}
@@ -62,7 +62,7 @@
     {{/each}}
   {{/if}}
   {{#if filter.month}}
-    <script>document.getElementById("month_{{filter.month}}").checked = true;</script>
+
     <script>document.getElementById('month-content').style.display = "block"</script>
     <script>document.getElementById('month-content').previousElementSibling.classList.toggle("active")</script>
     {{#each filter.month }}

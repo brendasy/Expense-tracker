@@ -29,57 +29,27 @@ router.get('/filter', authenticated, (req, res) => {
           const getTime = record.date
           record.date = (getTime.getMonth() + 1) + '-' + getTime.getDate() + '-' + getTime.getFullYear()  //修正時間顯示格式
 
-          if (filter.month && filter.category) {
-            if (typeof (filter.month) === 'string') { //是否只有勾選單一月份
-              if (filter.month === recordsMonth.toString()) { //是否為指定月份
-                if (typeof (filter.category) === 'string') {  //是否只有勾選單一類別
-                  if (filter.category === record.category) { return true }  //是否為指定類別
-                  else { return false }
-                }
-                else {
-                  if (filter.category.includes(record.category)) { return true }  //是否符合篩選類別
-                  else { return false }
-                }
-              }
-              else { return false }
+          if (filter.month && filter.category) {  //篩選月份&類別
+            if (filter.month.includes(recordsMonth.toString()) &&  //是否符合篩選月份&類別
+              filter.category.includes(record.category)) {
+              return true
             }
-            else {
-              if (filter.month.includes(recordsMonth.toString())) { //是否符合篩選月份
-                if (typeof (filter.category) === 'string') {  //是否只有勾選單一類別
-                  if (filter.category === record.category) { return true } //是否為指定類別
-                  else { return false }
-                }
-                else {
-                  if (filter.category.includes(record.category)) { return true }  //是否符合篩選類別
-                  else { return false }
-                }
-              } else { return false }
-            }
+            else { return false }
           }
           else if (filter.month) {  //僅篩選月份
-            if (typeof (filter.month) === 'string') { //是否只有勾選單一月份
-              if (filter.month === recordsMonth.toString()) { return true } //是否為指定月份
-              else { return false }
-            }
-            else {
-              if (filter.month.includes(recordsMonth.toString())) { return true } //是否符合篩選月份
-              else { return false }
-            }
+            if (filter.month.includes(recordsMonth.toString())) { return true } //是否符合篩選月份
+            else { return false }
           }
           else if (filter.category) { //僅篩選類別
-            if (typeof (filter.category) === 'string') {  //是否只有勾選單一類別
-              if (filter.category === record.category) { return true }  //是否為指定類別
-              else { return false }
-            }
-            else {
-              if (filter.category.includes(record.category)) { return true }  //是否符合篩選類別
-              else { return false }
-            }
+            if (filter.category.includes(record.category)) { return true }  //是否符合篩選類別
+            else { return false }
           }
-
-          return false
+          else {
+            return false
+          }
         })
-      } else {
+      }
+      else {
 
         for (record of records) {
 
