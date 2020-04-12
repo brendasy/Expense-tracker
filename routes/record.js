@@ -49,7 +49,7 @@ router.get('/:id/edit', authenticated, (req, res) => {
     .exec((err, record) => {
       if (err) return console.error(err)
       const getTime = record.date
-      record.date = (getTime.getMonth() + 1) + '-' + getTime.getDate() + '-' + getTime.getFullYear()
+      record.date = getTime.toLocaleDateString()
       return res.render('edit', { record })
     })
 

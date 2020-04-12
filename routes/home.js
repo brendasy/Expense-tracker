@@ -32,25 +32,19 @@ router.get('/', authenticated, (req, res) => {
           record.date = getTime.toLocaleDateString()  //修正時間顯示格式
 
           if (filter.month) {  //若有篩選月份
-            if (filter.month.includes(recordsMonth.toString())) { return true } //驗證是否符合篩選月份
-            else { return false }
+            return (filter.month.includes(recordsMonth.toString())) //驗證是否符合篩選月份
           }
 
           return true
           // if (filter.month && filter.category) {  //篩選月份&類別
-          //   if (filter.month.includes(recordsMonth.toString()) &&  //是否符合篩選月份&類別
-          //     filter.category.includes(record.category)) {
-          //     return true
-          //   }
-          //   else { return false }
+          //   return (filter.month.includes(recordsMonth.toString()) &&  //是否符合篩選月份&類別
+          //     filter.category.includes(record.category)) 
           // }
           // else if (filter.month) {  //僅篩選月份
-          //   if (filter.month.includes(recordsMonth.toString())) { return true } //是否符合篩選月份
-          //   else { return false }
+          //   return (filter.month.includes(recordsMonth.toString())) //是否符合篩選月份
           // }
           // else if (filter.category) { //僅篩選類別
-          //   if (filter.category.includes(record.category)) { return true }  //是否符合篩選類別
-          //   else { return false }
+          //   return (filter.category.includes(record.category)) //是否符合篩選類別
           // }
           // else {
           //   return false
