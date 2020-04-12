@@ -12,15 +12,15 @@
         </form>
         <ul class="list-group my-3">
           <li class="list-group-item d-flex justify-content-between bg-light">
+            <a {{!-- 傳送當前選擇排序參數(加上負號是因為點擊第二次的時候會做顛倒排序,如果做過處理再傳入sort.category會影響其他排序夾帶的sort.category參數),並加入其他兩種排序的狀態,以及加入過濾選單的參數 --}}
+              href="/?sort[category]={{#if sort.category}}-{{sort.category}}{{else}}1{{/if}}{{#if sort.date}}&sort[date]={{sort.date}}{{/if}}{{#if sort.amount}}&sort[amount]={{sort.amount}}{{/if}}{{#if filter.month}}{{#each filter.month }}&filter[month][]={{this}}{{/each}}{{/if}}{{#if filter.category}}{{#each filter.category }}&filter[category][]={{this}}{{/each}}{{/if}}">類別<span
+                class="arrow asc{{sort.category}}"></span></a>
             <a
-              href="/?sort=category{{#if filter.month}}{{#each filter.month }}&filter[month][]={{this}}{{/each}}{{/if}}{{#if filter.category}}{{#each filter.category }}&filter[category][]={{this}}{{/each}}{{/if}}">類別<span
-                class="arrow asc"></span></a>
+              href="/?sort[date]={{#if sort.date}}-{{sort.date}}{{else}}1{{/if}}{{#if sort.category}}&sort[category]={{sort.category}}{{/if}}{{#if sort.amount}}&sort[amount]={{sort.amount}}{{/if}}{{#if filter.month}}{{#each filter.month }}&filter[month][]={{this}}{{/each}}{{/if}}{{#if filter.category}}{{#each filter.category }}&filter[category][]={{this}}{{/each}}{{/if}}">日期<span
+                class="arrow asc{{sort.date}}"></span></a>
             <a
-              href="/?sort=date    {{#if filter.month}}{{#each filter.month }}&filter[month][]={{this}}{{/each}}{{/if}}{{#if filter.category}}{{#each filter.category }}&filter[category][]={{this}}{{/each}}{{/if}}">日期<span
-                class="arrow asc"></span></a>
-            <a
-              href="/?sort=amount{{#if filter.month}}{{#each filter.month }}&filter[month][]={{this}}{{/each}}{{/if}}{{#if filter.category}}{{#each filter.category }}&filter[category][]={{this}}{{/each}}{{/if}}">金額<span
-                class="arrow asc"></span></a>
+              href="/?sort[amount]={{#if sort.amount}}-{{sort.amount}}{{else}}1{{/if}}{{#if sort.category}}&sort[category]={{sort.category}}{{/if}}{{#if sort.date}}&sort[date]={{sort.date}}{{/if}}{{#if filter.month}}{{#each filter.month }}&filter[month][]={{this}}{{/each}}{{/if}}{{#if filter.category}}{{#each filter.category }}&filter[category][]={{this}}{{/each}}{{/if}}">金額<span
+                class="arrow asc{{sort.amount}}"></span></a>
           </li>
 
           {{#each records}}

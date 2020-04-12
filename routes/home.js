@@ -9,13 +9,19 @@ const { getTotal } = require('../expense-tracker')
 // 瀏覽條件篩選資料  
 router.get('/', authenticated, (req, res) => {
 
-  const filter = req.query.filter || ''//避免filter成為undefined
+  const filter = req.query.filter || ''   //避免filter成為undefined,將預設值設為空字串
   const sort = req.query.sort || ''
-  const category = filter.category || ''
+  const category = filter.category
+
+  if (sort !== undefined) {
+    if (sort[Object.keys(sort)[0]] === '--1') { // 當作第二次點擊相同欄位 排序時 會作升冪降冪互換
+      sort[Object.keys(sort)[0]] = '1'
+    }
+  }
 
   Record.find({
     userId: req.user._id,
-    category: category ? { $in: category } : { $exists: true }
+    category: category ? { $in: category } : { $exists: true }  //若沒有勾選類別篩選 則顯示所有 有類別欄位資料 的文件
   })
     .sort(sort)
     .lean()
@@ -36,32 +42,18 @@ router.get('/', authenticated, (req, res) => {
           }
 
           return true
-          // if (filter.month && filter.category) {  //篩選月份&類別
-          //   return (filter.month.includes(recordsMonth.toString()) &&  //是否符合篩選月份&類別
-          //     filter.category.includes(record.category)) 
-          // }
-          // else if (filter.month) {  //僅篩選月份
-          //   return (filter.month.includes(recordsMonth.toString())) //是否符合篩選月份
-          // }
-          // else if (filter.category) { //僅篩選類別
-          //   return (filter.category.includes(record.category)) //是否符合篩選類別
-          // }
-          // else {
-          //   return false
-          // }
         })
       }
       else {
 
         for (record of records) {
-
           const getTime = record.date
           record.date = getTime.toLocaleDateString()
           //record.date = (getTime.getMonth() + 1) + '-' + getTime.getDate() + '-' + getTime.getFullYear()  //修正時間顯示格式
         }
       }
 
-      return res.render('index', { records, totalAmount: getTotal(records), filter })
+      return res.render('index', { records, totalAmount: getTotal(records), filter, sort })
 
     })
 })
